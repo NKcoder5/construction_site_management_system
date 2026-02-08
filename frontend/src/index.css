@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --brand-orange: #EA580C;
+        --brand-orange-hover: #C2410C;
+        --surface-light: #F8FAFC;
+        --surface-dark: #0F172A;
+    }
+
+    body {
+        @apply bg-[#F8FAFC] dark:bg-[#0F172A] text-slate-900 dark:text-slate-100 antialiased font-sans transition-colors duration-300;
+        overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-slate-300 dark:bg-slate-700 rounded-full hover:bg-slate-400 dark:hover:bg-slate-600 transition-colors;
+    }
+}
+
+@layer components {
+    .premium-card {
+        @apply bg-white dark:bg-slate-900/50 backdrop-blur-xl border border-slate-200 dark:border-slate-800 shadow-sm rounded-[2.5rem] p-8 transition-all duration-300;
+    }
+
+    .premium-card-hover {
+        @apply hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 hover:border-orange-500/30 transform hover:-translate-y-1;
+    }
+
+    .btn-primary {
+        @apply px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-lg shadow-orange-600/20 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2;
+    }
+
+    .btn-secondary {
+        @apply px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all;
+    }
+
+    .heading-italic {
+        @apply font-black uppercase italic tracking-tighter;
+    }
+
+    .status-badge {
+        @apply px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border;
+    }
+
+    /* AI Insight Glow */
+    .ai-glow {
+        @apply relative overflow-hidden;
+    }
+
+    .ai-glow::after {
+        content: '';
+        @apply absolute inset-0 bg-gradient-to-r from-orange-500/0 via-orange-500/10 to-orange-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700;
+        transform: translateX(-100%);
+        animation: ai-shimmer 3s infinite;
+    }
+}
+
+@keyframes ai-shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Glassmorphism utility */
+.glass {
+    @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-800/20;
+}

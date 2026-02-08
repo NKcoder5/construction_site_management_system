@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy"
+        content="script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:;">
+    <title>Yogesh Constructions CMS</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+        // Shim for electron in browser
+        if (!window.require) {
+            window.ipcRenderer = {
+                send: (channel) => console.log('Simulated IPC Send: ' + channel),
+                on: (channel) => console.log('Simulated IPC On: ' + channel),
+                invoke: (channel) => Promise.resolve({})
+            };
+        } else {
+            const { ipcRenderer } = window.require('electron');
+            window.ipcRenderer = ipcRenderer;
+        }
+    </script>
+</body>
+
+</html>
